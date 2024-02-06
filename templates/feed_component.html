@@ -1,0 +1,15 @@
+{% for lang in langs %}
+<div>
+  {% if request.user.is_authenticated and lang.host == request.user %}
+
+  <a href="{% url 'update-room' lang.id %}"> Edit </a>
+  <a href=" {% url 'delete' lang.id %}"> Delete </a>
+  {% endif %}
+  <a href="{% url 'user-profile' lang.host.id %}">{{lang.host.username}}</a>
+  <h3>
+    {{lang.id }} --
+    <a href="{% url 'room' lang.id %}">{{lang.name}} </a>
+  </h3>
+  <h5>{{lang.topic.name}}</h5>
+</div>
+{% endfor %}
